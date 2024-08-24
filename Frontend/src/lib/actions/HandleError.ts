@@ -7,7 +7,7 @@ export const handleFetchError = async (error: unknown) => {
       icon: "error",
       title: "Oops...",
       text: error.response?.data,
-    });
+    })
     return;
   }
 

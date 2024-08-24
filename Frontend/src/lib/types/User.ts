@@ -1,15 +1,13 @@
 export interface IUser {
   _id: string;
-  profilePicUrl?: string;
-  username: string;
+  email: string;
   password: string;
   displayName: string;
   role?: "student" | "admin";
 }
 
 export interface IUserForm {
-  username?: string;
-  profilePicUrl?: string;
+  email?: string;
   password?: string;
   displayName?: string;
   role?: "student" | "admin";

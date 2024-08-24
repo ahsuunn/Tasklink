@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             element: <HomePage />,
           },
           {
-            path: "profile/:username",
+            path: "profile/:email",
             element: <ProfilePage />,
           },
           {
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
           },
 
           {
-            path: "profile/:username/edit",
+            path: "profile/:email/edit",
             element: <ProfilePageEdit />,
           },
         ],

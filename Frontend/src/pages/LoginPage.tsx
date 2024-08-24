@@ -7,12 +7,15 @@ import { handleFetchError } from "../lib/actions/HandleError";
 import CustomAxios from "../lib/actions/CustomAxios";
 import { IUserForm } from "../lib/types/User";
 import { CurrentUserContext } from "../lib/contexts/CurrentUserContext";
+import Image1 from '/Logindecor1.png'
+import Image2 from '/Logindecor2.png'
+import Image3 from '/Logindecor3.png'
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const currentUserContext = useContext(CurrentUserContext);
   const [formData, setFormData] = useState<IUserForm>({
-    username: "",
+    email: "",
     password: "",
     role: "student",
   });
@@ -42,40 +45,44 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen w-screen items-center justify-center px-4 py-6">
+    <div className="flex flex-col min-h-screen w-screen items-center justify-start px-4 py-12 mt-2 bg-gradient-to-t from-[#7fa1c2] to-[#f0f1f3]">
       <form
         action="post"
         onSubmit={onSubmit}
-        className="mx-auto flex h-fit w-full max-w-[700px] flex-col gap-4 rounded-lg border-[1px] py-10 shadow-lg md:px-8"
+        className="bg-[#4679a8] mt-12 mb-4 mx-auto flex h-fit w-full max-w-[500px] flex-col items-center gap-3 rounded-lg py-8 shadow-lg md:px-8"
       >
-        <h1 className="text-center text-2xl font-bold">Login</h1>
-        <h2 className="text-center">Sign in or Login to your account here</h2>
+        <h1 className="text-white text-center text-3xl mb-2 ">TaskLink</h1>
         <InputText
-          value={formData.username as string}
+          value={formData.email as string}
           onChange={onChange}
-          name="username"
-          placeholder="Input your username here"
+          name="email"
+          placeholder="Email"
         />
         <InputPassword
           value={formData.password as string}
           onChange={onChange}
           name="password"
-          placeholder="Input your password here"
+          placeholder="Password"
+          className="py-2"
         />
-        <Button>Login</Button>
-        <div className="mx-auto flex gap-2 text-sm">
-          <p>Don't have an account?</p>
-          <NavLink to="/auth/sign-up" className="text-blue-700 duration-300">
-            Sign up now!
-          </NavLink>
-        </div>
-
-        <NavLink to="/" className="w-full">
-          <Button className="w-full bg-blue-200 text-blue-800 hover:bg-blue-300">
-            Continue As a Guest
-          </Button>
-        </NavLink>
+        <Button className="bg-white text-black px-6 mt-2 py-1 rounded-xl">Log In</Button>
       </form>
+      <div className="flex flex-col items-center">
+        <p className="text-black text-center">Don't have an account yet?</p>
+        <p className="text-black text-center">Make yours here for free.</p>
+        <NavLink to="/auth/sign-up">
+        <button className="bg-[#0c173d]  my-2 mx-auto px-6 py-1 rounded-xl text-white">Sign Up</button>
+        </NavLink>
+      </div>
+      <div>
+        <div className="absolute left-0 bottom-0">
+          <img src={Image2} alt="Image2"></img>
+          <img src={Image1} alt="Image1"></img>
+        </div>
+        <div className="absolute right-0 bottom-0">
+        <img src={Image3} alt="Image3"></img>
+        </div>
+      </div>
     </div>
   );
 };

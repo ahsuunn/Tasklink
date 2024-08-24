@@ -9,10 +9,10 @@ import { handleFetchError } from "../../lib/actions/HandleError";
 import InputImage from "../../components/universal/InputImage";
 
 const ProfilePageEdit = () => {
-  const { username } = useParams();
+  const { email } = useParams();
   const navigate = useNavigate();
   const { response: userProfile } = useFetch<IUser>({
-    url: `/profile/${username}`,
+    url: `/profile/${email}`,
   });
   const [formData, setFormData] = useState<IUserForm>({
     profilePicUrl: "",
@@ -46,7 +46,7 @@ const ProfilePageEdit = () => {
         fd.append("file", file);
         const { data } = await CustomAxios(
           "post",
-          `/uploads/profilePic/${username}`,
+          `/uploads/profilePic/${email}`,
           fd,
         );
         updateData.profilePicUrl = data.url;
@@ -54,7 +54,7 @@ const ProfilePageEdit = () => {
 
       await CustomAxios("put", `/profile/${userProfile?._id}`, updateData);
 
-      navigate(`/profile/${username}`);
+      navigate(`/profile/${email}`);
     } catch (error) {
       handleFetchError(error);
     }
@@ -102,18 +102,18 @@ const ProfilePageEdit = () => {
 
           <div className="flex w-full flex-col items-start">
             <p className="text-sm font-light uppercase tracking-wider">
-              Public username
+              email
             </p>
             <InputText
               value={formData.displayName as string}
               onChange={onChange}
               name="displayName"
-              placeholder="Input your new public username"
+              placeholder="Input your new public email"
             />
           </div>
           <Button>Edit</Button>
           <NavLink
-            to={`/profile/${username}`}
+            to={`/profile/${email}`}
             className="flex items-center justify-center rounded-md border-2 border-blue-600 bg-white py-2 text-blue-600 hover:bg-blue-100"
           >
             <p>Cancel</p>

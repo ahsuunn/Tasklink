@@ -11,15 +11,15 @@ import { twMerge } from "tailwind-merge";
 
 const ProfilePage = () => {
   const currentUserContext = useContext(CurrentUserContext);
-  const { username } = useParams();
+  const { email } = useParams();
   const { response: userProfile } = useFetch<IUser>({
-    url: `/profile/${username}`,
+    url: `/profile/${email}`,
   });
   const { response: userReports } = useFetch<ITask[]>({
     url: `/tasks/mine`,
   });
 
-  const isUserOwner = username === currentUserContext?.currentUser?.username;
+  const isUserOwner = email === currentUserContext?.currentUser?.email;
 
   const handleShareClick = () => {
     const profileUrl = window.location.href;
@@ -52,7 +52,7 @@ const ProfilePage = () => {
           <div className="pt- flex items-center gap-3 py-2">
             {isUserOwner && (
               <NavLink
-                to={`/profile/${username}/edit`}
+                to={`/profile/${email}/edit`}
                 className="rounded-md bg-purple-300 p-2 text-purple-950 hover:bg-purple-400"
               >
                 Edit

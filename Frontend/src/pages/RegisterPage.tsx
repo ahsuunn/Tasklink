@@ -12,7 +12,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const currentUserContext = useContext(CurrentUserContext);
   const [formData, setFormData] = useState<IUserForm>({
-    username: "",
+    email: "",
     password: "",
     displayName: "",
     role: "student",
@@ -29,6 +29,7 @@ const RegisterPage = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Form Data:", formData);
     try {
       const { data } = await CustomAxios("post", "/auth/sign-up", formData);
 
@@ -52,22 +53,16 @@ const RegisterPage = () => {
         <h1 className="text-center text-2xl font-bold">Register</h1>
         <h2 className="text-center">Register your account here</h2>
         <InputText
-          value={formData.username as string}
+          value={formData.email as string}
           onChange={onChange}
-          name="username"
-          placeholder="Input your username here"
+          name="email"
+          placeholder="Input your email here"
         />
         <InputPassword
           value={formData.password as string}
           onChange={onChange}
           name="password"
           placeholder="Input your password here"
-        />
-        <InputText
-          value={formData.displayName as string}
-          onChange={onChange}
-          name="displayName"
-          placeholder="Input your public username"
         />
         <Button>Register</Button>
         <div className="mx-auto flex gap-2 text-sm">

@@ -11,9 +11,9 @@ const createIfNotExists = async (Model, query, data) => {
 const initialSeeding = async () => {
   await createIfNotExists(
     User,
-    { username: "overseer" },
+    { email: "overseer" },
     {
-      username: "overseer",
+      email: "overseer",
       password: getHashedString("overseer123"),
       role: "admin",
     }

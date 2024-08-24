@@ -2,11 +2,11 @@ const { CustomError } = require("../middlewares/Errorhandler");
 const User = require("../models/User");
 
 class ProfileController {
-  static async getByUsername(req, res, next) {
+  static async getByEmail(req, res, next) {
     try {
-      const { username } = req.params;
+      const { email } = req.params;
 
-      const user = await User.findOne({ username });
+      const user = await User.findOne({ email });
 
       res.status(200).json(user);
     } catch (error) {
