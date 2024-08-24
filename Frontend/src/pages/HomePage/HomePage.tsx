@@ -1,13 +1,10 @@
-import { AboutSection } from "./AboutSection";
-import FeaturesSection from "./FeaturesSection";
 import HeroSection from "./HeroSection";
 
 const HomePage = () => {
   return (
-    <div id="home" className="relative grow">
+    <div id="home" className="relative flex min-h-fit grow flex-col">
+      <div className="relative w-full pb-20"></div>
       <HeroSection />
-      <FeaturesSection />
-      <AboutSection />
     </div>
   );
 };

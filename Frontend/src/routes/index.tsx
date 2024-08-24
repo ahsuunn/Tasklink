@@ -9,6 +9,8 @@ import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import ProfilePageEdit from "../pages/ProfilePage/ProfileEdit";
 import CreateTaskPage from "../pages/CreateTaskPage/CreateTaskPage";
 import TaskPage from "../pages/TaskPage/TaskPage";
+import DeleteTaskPage from "../pages/DeleteTaskPage/DeleteTaskPage";
+import ViewStepsPage from "../pages/ViewStepsPage/ViewStepsPage";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
           {
             path: "profile/tasks",
             element: <TaskPage />,
+          },
+          {
+            path: "delete-project/:taskId",
+            element: <DeleteTaskPage />,
+          },
+          {
+            path: "view-project/:taskId",
+            element: <ViewStepsPage />,
           },
         ],
       },
