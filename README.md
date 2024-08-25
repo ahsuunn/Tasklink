@@ -7,23 +7,25 @@ Tasklink adalah sebuah aplikasi task management yang berguna untuk mengatur jadw
 * Calendar akan membantu pengguna untuk melihat jadwal saja yang dimiliki pengguna juga akan terintegrasi dengan tugas yang ada.
 * Find My Buddies adalah fitur yang akan membantu pengguna untuk mencari teman dalam aplikasi dengan cara melakukan profile matching berdasarkan minat dari tiap pengguna.
 
+## Program
+### Tech Stack
+* Frontend <br>
+Teknologi: Vite (Build-tool)<br>
+Bahasa: Typescript+JSX (TSX), dan Typescript (TS)<br>
+Framework: React, Tailwind (CSS Framework) <br>
 
-## Tech Stack
-1. Vite: Frontend Devtool
-2. MongoDB : Database
-3. NodeJS: Runtime Environment
+* Backend <br>
+Teknologi: Node.js (Runtime Environment) & MongoDB (Database) <br>
+Bahasa: Javascript (JS) <br>
+Framework: Express.js <br>
 
+### Struktur Program
 <br>
 
-## Struktur Program
-
-<br>
-
-## Cara menjalankan program
+### Cara menjalankan program
 1. Git clone program
 2. Pastikan sudah mendownload node.js
-3. Buka 2 terminal dengan satu berada di folder Front End dan satu berada di folder Back End dan jalankan command "npm run dev" pada kedua folder tersebut
-<br>
+3. Buka 2 terminal dengan satu berada di folder Front End dan satu berada di folder Back End dan jalankan command `npm run dev` pada kedua folder tersebut
 
 ## Kelompok 3
 1. Jason Samuel                   | 19623118 | Product Manager
