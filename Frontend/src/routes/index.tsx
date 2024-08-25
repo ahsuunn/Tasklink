@@ -78,7 +78,7 @@ const router = createBrowserRouter([
           },
 
           {
-            path: "profile/edit",
+            path: "profile/edit/:email",
             element: <ProfilePageEdit />,
           },
         ],

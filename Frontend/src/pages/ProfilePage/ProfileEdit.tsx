@@ -9,14 +9,15 @@ import CustomAxios from "../../lib/actions/CustomAxios";
 import Modal from "../../components/universal/Modal";
 import { handleFetchError } from "../../lib/actions/HandleError";
 import InputPassword from "../../components/universal/InputPassword";
-import axios from "axios";
+import Swal from "sweetalert2";
 
 const ProfilePageEdit = () => {
   const { username } = useParams();
   const currentUserContext = useContext(CurrentUserContext);
+  console.log("Email:", currentUserContext?.currentUser?.email);
   const navigate = useNavigate();
   const { response: userProfile } = useFetch<IUser>({
-    url: `/profile/${username}`,
+    url: `/profile/${currentUserContext?.currentUser?.email}`,
   });
   const [formData, setFormData] = useState<IUserForm>({
     username: "",
@@ -40,27 +41,22 @@ const ProfilePageEdit = () => {
   const [step, setStep] = useState(1);
   const [currentPasswordInput, setCurrentPasswordInput] = useState("");
 
-  const fetchCurrentPassword = async () => {
-    try {
-      const response = await axios.get("/auth/getCurrentPassword"); // Adjust the endpoint as necessary
-      const { storedPassword } = response.data;
-      return storedPassword;
-    } catch (error) {
-      console.error("Error fetching current password", error);
-    }
-  };
-
   const handleChangePassword = async () => {
     if (step === 1) {
-      const storedPassword = await fetchCurrentPassword();
-
       try {
-        const response = await axios.post("/auth/verifyPassword", {
+        console.log("cheese, ", currentPasswordInput);
+        await CustomAxios("post", "/auth/verify-password", {
           inputtedPassword: currentPasswordInput,
-          storedPassword,
         });
 
-        if (response.data.success) {
+        const response = await Swal.fire({
+          icon: "success",
+          title: "Checking...",
+          showCancelButton: true,
+          cancelButtonText: "Done",
+        });
+
+        if (response.isConfirmed) {
           setStep(2);
         } else {
           alert("Current password is incorrect.");
@@ -71,13 +67,13 @@ const ProfilePageEdit = () => {
       }
     } else {
       try {
-        await CustomAxios(
-          "put",
-          `/profile/changePassword/${userProfile?._id}`,
-          {
-            newPassword: formData.newPassword,
-          },
-        );
+        // Use existing profile data and add newPassword to it
+        const updateData = {
+          ...formData,
+          newPassword: formData.newPassword,
+        };
+        console.log("New: ", formData.newPassword);
+        await CustomAxios("put", `/profile/${userProfile?._id}`, updateData);
         setShowChangePasswordModal(false);
         setStep(1);
       } catch (error) {

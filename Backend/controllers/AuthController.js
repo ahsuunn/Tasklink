@@ -30,15 +30,43 @@ class AuthController {
 
   static async signUp(req, res, next) {
     try {
-      const { email, password, displayName, role } = req.body;
+      const { email, password, displayName, lastName, major, yearOfEntry, role } = req.body;
 
+      // Validate required fields
+      if (!email || !password || !displayName || !role) {
+        throw new CustomError(400, "Missing required fields");
+      }
+
+      // Check if the email already exists
       const existedUser = await User.findOne({ email });
-      if (existedUser) throw new CustomError(400, "email is taken");
+      if (existedUser) throw new CustomError(400, "Email is taken");
 
-      const { insertedId } = await User.create({ email, password: getHashedString(password), displayName, role });
+      // Create a new user
+      const { insertedId } = await User.create({
+        email,
+        password: getHashedString(password),
+        displayName,
+        lastName,
+        major,
+        yearOfEntry,
+        role,
+      });
+
+      // Retrieve the created user to include in response
       const existingUser = await User.findOne({ _id: new ObjectId(insertedId) });
 
-      res.status(201).json({ token: getToken(existingUser), user: { email, displayName, role, _id: existingUser._id } });
+      res.status(201).json({
+        token: getToken(existingUser),
+        user: {
+          email,
+          displayName,
+          lastName,
+          major,
+          yearOfEntry,
+          role,
+          _id: existingUser._id,
+        },
+      });
     } catch (error) {
       next(error);
     }
@@ -52,26 +80,26 @@ class AuthController {
     }
   }
 
-  static async getCurrentPassword(req, res, next) {
+  static async verifyPassword(req, res, next) {
     try {
-      const userId = res.locals.user._id; // Assuming the user is authenticated and user ID is stored in res.locals
+      const _id = res.locals.user._id;
+      console.log(_id);
+      console.log("cheese");
 
-      const user = await User.findById(userId).select("password");
+      const user = await User.findOne({ _id: new ObjectId(_id) });
+
+      console.log(user);
       if (!user) {
+        console.log("boom");
         throw new CustomError(404, "User not found");
       }
 
       const storedPassword = user.password;
 
-      res.status(200).json({ storedPassword });
-    } catch (error) {
-      next(error);
-    }
-  }
+      const { inputtedPassword } = req.body;
 
-  static async verifyPassword(req, res, next) {
-    try {
-      const { inputtedPassword, storedPassword } = req.body;
+      console.log("Inputted Password: ", inputtedPassword);
+      console.log("storedPassword: ", storedPassword);
 
       const isPasswordValid = isStringRelevant(inputtedPassword, storedPassword);
 
@@ -85,4 +113,5 @@ class AuthController {
     }
   }
 }
+
 module.exports = AuthController;

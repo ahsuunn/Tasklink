@@ -5,6 +5,7 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const currentUserContext = useContext(CurrentUserContext);
+  console.log("email: ", currentUserContext?.currentUser?.email);
   return (
     <nav className="navbar">
       <div className="logo">
@@ -36,7 +37,7 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to="/profile/edit"
+            to={`/profile/edit/${currentUserContext?.currentUser?.email}`}
             activeClassName="active"
             className="hover:text-black"
           >
