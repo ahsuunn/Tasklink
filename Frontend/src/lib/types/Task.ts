@@ -8,6 +8,7 @@ export interface IStep {
 }
 
 export interface ITask {
+  category: string;
   _id: string;
   TaskUserId: string;
   primarytitle: string;

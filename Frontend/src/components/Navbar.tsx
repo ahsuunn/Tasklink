@@ -1,7 +1,7 @@
+import { useContext } from "react";
+import { CurrentUserContext } from "../lib/contexts/CurrentUserContext";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import { CurrentUserContext } from "../lib/contexts/CurrentUserContext";
-import { useContext } from "react";
 
 const Navbar = () => {
   const currentUserContext = useContext(CurrentUserContext);
@@ -36,7 +36,7 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to="/profile/edit"
+            to="/settings"
             activeClassName="active"
             className="hover:text-black"
           >
@@ -49,7 +49,7 @@ const Navbar = () => {
       <div className="profile">
         <ul>
           <li>
-            <NavLink to="/">
+            <NavLink to="/profile">
               <div className="profile-btn reverse">
                 <div className="profile-img"></div>
                 <div className="username">
