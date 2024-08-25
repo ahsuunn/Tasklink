@@ -16,7 +16,12 @@ class AuthController {
 
       res.status(200).json({
         token: getToken(existingUser),
-        user: { username, displayName: existingUser.displayName, role: existingUser.role, _id: existingUser._id },
+        user: {
+          username: existingUser.username,
+          displayName: existingUser.displayName,
+          role: existingUser.role,
+          _id: existingUser._id,
+        },
       });
     } catch (error) {
       next(error);

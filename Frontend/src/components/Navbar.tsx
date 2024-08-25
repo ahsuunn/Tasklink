@@ -36,7 +36,7 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to="/settings"
+            to="/profile/edit"
             activeClassName="active"
             className="hover:text-black"
           >
