@@ -91,8 +91,6 @@ body {
   width: 150px;
   border-radius: 50px;
   color: var(--black);
-  /* background-color: white;
-  box-shadow: var(--shadow); */
   gap: 0.3rem;
 
   cursor: pointer;
