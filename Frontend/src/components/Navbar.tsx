@@ -1,20 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import { CurrentUserContext } from "../lib/contexts/CurrentUserContext";
-import { NavLink, useNavigate } from "react-router-dom";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { twMerge } from "tailwind-merge";
-import { NavHashLink } from "react-router-hash-link";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import { CurrentUserContext } from "../lib/contexts/CurrentUserContext";
+import { useContext } from "react";
 
 const Navbar = () => {
+  const currentUserContext = useContext(CurrentUserContext);
   return (
     <nav className="navbar">
-      {/* Logo */}
       <div className="logo">
         <NavLink to="/">TaskLink</NavLink>
       </div>
-
-      {/* Navbar List */}
       <ul className="navbar-list">
         <li>
           <NavLink to="/" activeClassName="active" className="hover:text-black">
@@ -41,7 +36,7 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to="/settings"
+            to="/profile/edit"
             activeClassName="active"
             className="hover:text-black"
           >
@@ -54,11 +49,13 @@ const Navbar = () => {
       <div className="profile">
         <ul>
           <li>
-            <NavLink to="/profile">
+            <NavLink to="/">
               <div className="profile-btn reverse">
                 <div className="profile-img"></div>
                 <div className="username">
-                  <span className="username">Username</span>
+                  <span className="username">
+                    {currentUserContext?.currentUser?.role}
+                  </span>
                 </div>
               </div>
             </NavLink>
