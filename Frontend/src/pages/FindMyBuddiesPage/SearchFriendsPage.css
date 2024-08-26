@@ -1,0 +1,61 @@
+/* SearchFriendsPage.css */
+
+.scroll-container {
+  max-height: calc(32rem - 2rem); /* Maintains the existing height */
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding-right: 0.5rem; /* Adds padding to avoid content overlap with scrollbar */
+}
+
+/* Custom scrollbar styling */
+.scroll-container::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded edges of the scrollbar thumb */
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: #999; /* Darker color on hover */
+}
+
+.user-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem; /* Adds spacing between user item elements */
+  padding-bottom: 0.5rem; /* Adds padding to the bottom for spacing */
+  margin-bottom: 0.5rem; /* Adds space below each item */
+  border-bottom: 1px solid white; /* Adds a white separator border below */
+  transition: background-color 0.2s ease; /* Smooth transition effect */
+}
+
+.user-item:hover {
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.user-avatar {
+  height: 2.25rem; /* 36px */
+  width: 2.25rem; /* 36px */
+  border-radius: 50%; /* Makes the avatar circular */
+  background-color: black; /* Default avatar background */
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-left: 1rem;
+}
+
+.user-name {
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+
+.user-major {
+  color: black;
+}

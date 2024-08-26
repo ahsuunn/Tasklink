@@ -13,6 +13,7 @@ import DeleteTaskPage from "../pages/DeleteTaskPage/DeleteTaskPage";
 import ViewStepsPage from "../pages/ViewStepsPage/ViewStepsPage";
 import CalendarPage from "../pages/CalendarPage/CalendarPage";
 import FindMyBuddiesPage from "../pages/FindMyBuddiesPage/FindMyBuddiesPage";
+import SearchFriendsPage from "../pages/FindMyBuddiesPage/SearchFriendsPage";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
           {
             path: "findmybuddies",
             element: <FindMyBuddiesPage />,
+          },
+          {
+            path: "findmybuddies/find-buddies",
+            element: <SearchFriendsPage />,
           },
           {
             path: "profile/:email",

@@ -14,6 +14,16 @@ class ProfileController {
     }
   }
 
+  static async getAll(req, res, next) {
+    try {
+      const user = await User.findAll();
+
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async updateById(req, res, next) {
     try {
       const { _id } = req.params;

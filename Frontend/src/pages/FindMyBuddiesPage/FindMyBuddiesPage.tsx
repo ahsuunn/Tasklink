@@ -1,8 +1,14 @@
 import { MdPeople } from "react-icons/md";
 import { FaBell } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const FindMyBuddiesPage = () => {
+  const navigate = useNavigate();
+  const handleNavigateToFindBuddies = () => {
+    navigate("/findmybuddies/find-buddies");
+  };
+
   return (
     <div className="mb-10 mt-10 flex h-fit min-h-fit w-full flex-col px-10 py-4">
       <div className="mb-2 ml-5 text-xl text-black">Chat</div>
@@ -19,7 +25,10 @@ const FindMyBuddiesPage = () => {
               <div className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg bg-[#4679a8]">
                 <FaBell color="white" />
               </div>
-              <div className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg bg-[#4679a8]">
+              <div
+                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg bg-[#4679a8]"
+                onClick={handleNavigateToFindBuddies}
+              >
                 <MdPeople color="white" />
               </div>
             </div>
@@ -34,7 +43,7 @@ const FindMyBuddiesPage = () => {
           </div>
           <div className="h-full w-full bg-white"></div>
           <div className="h-[8rem] w-full rounded-lg bg-[#cbdefa] shadow-lg">
-            Footr
+            Footer
           </div>
         </div>
       </div>
