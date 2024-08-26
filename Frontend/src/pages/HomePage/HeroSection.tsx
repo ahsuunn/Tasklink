@@ -81,7 +81,7 @@ const HeroSection = () => {
   }, [dropdownVisible]);
 
   return (
-    <section className="relative h-fit min-h-fit w-full grow pb-20 pt-8">
+    <section className="relative h-fit min-h-fit w-full grow pb-20">
       <div className="relative mx-auto flex h-full min-h-fit w-[90%] grow flex-col items-center justify-between gap-2 px-4 md:flex-row">
         <div className="flex h-fit w-full flex-col rounded-lg border bg-[#7fa1c3] pb-7 shadow-lg md:w-[60%]">
           <div className="flex flex-row justify-between gap-2 px-4 py-2">

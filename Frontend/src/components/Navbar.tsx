@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CurrentUserContext } from "../lib/contexts/CurrentUserContext";
 import { NavLink } from "react-router-dom";
+import logopic from "../pages/images/logo.png";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -9,7 +10,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <NavLink to="/">TaskLink</NavLink>
+        <NavLink to="/" activeClassName="active">
+          <img src={logopic} alt="Logo" width="60%" />
+        </NavLink>
       </div>
       <ul className="navbar-list">
         <li>
@@ -55,7 +58,7 @@ const Navbar = () => {
                 <div className="profile-img"></div>
                 <div className="username">
                   <span className="username">
-                    {currentUserContext?.currentUser?.role}
+                    {currentUserContext?.currentUser?.displayName}
                   </span>
                 </div>
               </div>

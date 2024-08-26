@@ -38,8 +38,8 @@ body {
 
 .logo {
   font-size: 2em;
-  pointer-events: none;
   display: flex;
+  cursor: pointer;
 }
 
 .logo a {

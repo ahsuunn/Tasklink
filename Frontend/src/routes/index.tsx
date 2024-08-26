@@ -12,6 +12,7 @@ import TaskPage from "../pages/TaskPage/TaskPage";
 import DeleteTaskPage from "../pages/DeleteTaskPage/DeleteTaskPage";
 import ViewStepsPage from "../pages/ViewStepsPage/ViewStepsPage";
 import CalendarPage from "../pages/CalendarPage/CalendarPage";
+import FindMyBuddiesPage from "../pages/FindMyBuddiesPage/FindMyBuddiesPage";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
           {
             path: "calendar",
             element: <CalendarPage />,
+          },
+          {
+            path: "findmybuddies",
+            element: <FindMyBuddiesPage />,
           },
           {
             path: "profile/:email",
