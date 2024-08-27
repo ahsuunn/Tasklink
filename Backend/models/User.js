@@ -36,13 +36,13 @@ class User {
     return getDatabase().collection("Users");
   }
 
-  static async findAll(query) {
+  static async findAll(query = {}) {
     const collection = await User.collection();
     const data = await collection.find(query).toArray();
     return data.map((el) => new User(el));
   }
 
-  static async findOne(query) {
+  static async findOne(query = {}) {
     const collection = await User.collection();
     const myData = await collection.findOne(query);
     return myData;
@@ -54,7 +54,7 @@ class User {
     email,
     password,
     displayName = "User",
-    role = "citizen",
+    role = "student",
     profilePicUrl = "",
     major = "",
     yearOfEntry = "",
@@ -86,7 +86,7 @@ class User {
 
   static async updateById(_id, updateDoc) {
     const collection = await User.collection();
-    const result = await collection.updateOne({ _id: new ObjectId(_id) }, updateDoc);
+    const result = await collection.updateOne({ _id: new ObjectId(_id) }, { $set: updateDoc });
     return result;
   }
 
@@ -94,7 +94,7 @@ class User {
     const collection = await User.collection();
     const result = await collection.updateOne(
       { _id: new ObjectId(userId) },
-      { $addToSet: { friends: new ObjectId(friendId) } } // Prevents duplicate entries
+      { $addToSet: { friends: { _id: new ObjectId(), friendid: friendId } } }
     );
     return result;
   }
@@ -103,7 +103,14 @@ class User {
     const collection = await User.collection();
     const result = await collection.updateOne(
       { _id: new ObjectId(userId) },
-      { $addToSet: { friendrequests: new ObjectId(requesterId) } } // Prevents duplicate entries
+      {
+        $addToSet: {
+          friendrequests: {
+            _id: new ObjectId(),
+            senderid: requesterId,
+          },
+        },
+      }
     );
     return result;
   }
@@ -112,14 +119,14 @@ class User {
     const collection = await User.collection();
     const result = await collection.updateOne(
       { _id: new ObjectId(userId) },
-      { $pull: { friendrequests: new ObjectId(requesterId) } }
+      { $pull: { friendrequests: { senderid: requesterId } } }
     );
     return result;
   }
 
   static async removeFriend(userId, friendId) {
     const collection = await User.collection();
-    const result = await collection.updateOne({ _id: new ObjectId(userId) }, { $pull: { friends: new ObjectId(friendId) } });
+    const result = await collection.updateOne({ _id: new ObjectId(userId) }, { $pull: { friends: { friendid: friendId } } });
     return result;
   }
 }

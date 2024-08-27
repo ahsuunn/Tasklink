@@ -9,6 +9,7 @@ ProfileRouter.put("/:_id", Authentication, ProfileController.updateById);
 
 ProfileRouter.post("/friends/add", Authentication, ProfileController.addFriend);
 ProfileRouter.post("/friends/remove", Authentication, ProfileController.removeFriend);
+ProfileRouter.get("/friendrequests/mine", Authentication, ProfileController.getMyRequests);
 ProfileRouter.post("/friendrequests/send", Authentication, ProfileController.addFriendRequest);
 ProfileRouter.post("/friendrequests/remove", Authentication, ProfileController.removeFriendRequest);
 

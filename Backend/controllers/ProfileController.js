@@ -1,4 +1,5 @@
 const { CustomError } = require("../middlewares/Errorhandler");
+const { ObjectId } = require("mongodb");
 const User = require("../models/User");
 
 class ProfileController {
@@ -37,6 +38,22 @@ class ProfileController {
       await User.updateById(_id, { $set: { firstName, lastName, email, displayName, major, yearOfEntry } });
 
       res.sendStatus(200);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getMyRequests(req, res, next) {
+    try {
+      const UserId = res.locals.user._id;
+      const user = await User.findOne({ _id: new ObjectId(UserId) }, { friendrequests: 1 });
+      console.log(UserId);
+      console.log(user);
+      console.log("........");
+      if (!user) {
+        throw new CustomError(404, "User not found");
+      }
+      res.status(200).json(user.friendrequests);
     } catch (error) {
       next(error);
     }

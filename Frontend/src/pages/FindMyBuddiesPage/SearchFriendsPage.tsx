@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CustomAxios from "../../lib/actions/CustomAxios";
 import { handleFetchError } from "../../lib/actions/HandleError";
 import Swal from "sweetalert2";
-import "./SearchFriendsPage.css"; // Import the CSS file
+import "./SearchFriendsPage.css";
 
 const SearchFriendsPage = () => {
   const navigate = useNavigate();
@@ -103,7 +103,7 @@ const SearchFriendsPage = () => {
                 </div>
                 <FaPlus
                   className="cursor-pointer"
-                  onClick={() => handleSendFriendRequest(user._id)} // Attach the click handler
+                  onClick={() => handleSendFriendRequest(user._id)}
                 />
               </div>
             ))}
