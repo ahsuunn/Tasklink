@@ -50,7 +50,7 @@ const FriendRequestPage = () => {
     console.log("Sender ID: ", senderId);
     try {
       const reqbody = {
-        requesterId: senderId, // Send the senderId
+        requesterId: senderId,
       };
 
       await CustomAxios("post", `/profile/friendrequests/remove`, reqbody);
@@ -80,7 +80,7 @@ const FriendRequestPage = () => {
           _id: request._id,
           displayName: user ? user.displayName : "Unknown User",
           lastName: user ? user.lastName : "",
-          senderid: request.senderid, // Include senderid in the state
+          senderid: request.senderid,
         };
       });
       setRequestsWithDisplayNames(requestsWithNames);
