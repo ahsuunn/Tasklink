@@ -17,7 +17,7 @@ const initialSeeding = async () => {
       lastName: "Admin",
       email: "overseer@example.com",
       password: getHashedString("overseer123"),
-      displayName: "Overseer Admin",
+      displayName: "John",
       role: "admin",
       profilePicUrl: "",
       major: "IF'00",

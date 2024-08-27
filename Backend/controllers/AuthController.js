@@ -50,9 +50,10 @@ class AuthController {
         major,
         yearOfEntry,
         role,
+        friends: [],
+        friendrequests: [],
       });
 
-      // Retrieve the created user to include in response
       const existingUser = await User.findOne({ _id: new ObjectId(insertedId) });
 
       res.status(201).json({

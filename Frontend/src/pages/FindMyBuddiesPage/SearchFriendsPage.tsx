@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { IoMdSearch } from "react-icons/io";
-import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowLeftLong, FaPlus } from "react-icons/fa6";
 import { IUser } from "../../lib/types/User";
 import useFetch from "../../lib/CustomHooks/useFetch";
 import { useNavigate } from "react-router-dom";
-import { FaPlus } from "react-icons/fa6";
+import CustomAxios from "../../lib/actions/CustomAxios";
+import { handleFetchError } from "../../lib/actions/HandleError";
+import Swal from "sweetalert2";
 import "./SearchFriendsPage.css"; // Import the CSS file
 
 const SearchFriendsPage = () => {
@@ -32,6 +34,29 @@ const SearchFriendsPage = () => {
       setFilteredUsers(filtered);
     }
   }, [users, searchQuery]);
+
+  const handleSendFriendRequest = async (userId: string) => {
+    try {
+      const reqbody = {
+        recipientId: userId,
+      };
+
+      await CustomAxios("post", `/profile/friendrequests/send`, reqbody);
+
+      const response = await Swal.fire({
+        icon: "success",
+        title: "",
+        text: "Friend request sent",
+        showCancelButton: true,
+        cancelButtonText: "Done",
+      });
+      if (response.isConfirmed) {
+        navigate(`/findmybuddies`);
+      }
+    } catch (error) {
+      handleFetchError(error);
+    }
+  };
 
   return (
     <div className="mb-10 mt-10 flex h-fit min-h-fit w-full flex-col px-20 py-4">
@@ -62,7 +87,6 @@ const SearchFriendsPage = () => {
           <p className="text-white">No users found.</p>
         )}
         <div className="scroll-container">
-          {/* Inner scrollable container */}
           {!loading &&
             !error &&
             filteredUsers.map((user) => (
@@ -77,7 +101,10 @@ const SearchFriendsPage = () => {
                     <p className="user-major">{user.major}</p>
                   </div>
                 </div>
-                <FaPlus className="cursor-pointer" />
+                <FaPlus
+                  className="cursor-pointer"
+                  onClick={() => handleSendFriendRequest(user._id)} // Attach the click handler
+                />
               </div>
             ))}
         </div>

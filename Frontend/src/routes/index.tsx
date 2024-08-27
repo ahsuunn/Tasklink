@@ -14,6 +14,7 @@ import ViewStepsPage from "../pages/ViewStepsPage/ViewStepsPage";
 import CalendarPage from "../pages/CalendarPage/CalendarPage";
 import FindMyBuddiesPage from "../pages/FindMyBuddiesPage/FindMyBuddiesPage";
 import SearchFriendsPage from "../pages/FindMyBuddiesPage/SearchFriendsPage";
+import FriendRequestPage from "../pages/FindMyBuddiesPage/FriendRequestPage";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
           {
             path: "findmybuddies/find-buddies",
             element: <SearchFriendsPage />,
+          },
+          {
+            path: "findmybuddies/friendrequests",
+            element: <FriendRequestPage />,
           },
           {
             path: "profile/:email",

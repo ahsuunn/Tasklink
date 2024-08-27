@@ -9,6 +9,10 @@ const FindMyBuddiesPage = () => {
     navigate("/findmybuddies/find-buddies");
   };
 
+  const handleNavigateToFriendRequest = () => {
+    navigate("/findmybuddies/friendrequests");
+  };
+
   return (
     <div className="mb-10 mt-10 flex h-fit min-h-fit w-full flex-col px-10 py-4">
       <div className="mb-2 ml-5 text-xl text-black">Chat</div>
@@ -22,7 +26,10 @@ const FindMyBuddiesPage = () => {
                 </div>
                 <div>Search...</div>
               </div>
-              <div className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg bg-[#4679a8]">
+              <div
+                className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg bg-[#4679a8]"
+                onClick={handleNavigateToFriendRequest}
+              >
                 <FaBell color="white" />
               </div>
               <div
