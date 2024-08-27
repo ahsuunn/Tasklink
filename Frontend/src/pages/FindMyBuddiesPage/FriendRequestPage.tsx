@@ -4,6 +4,9 @@ import useFetch from "../../lib/CustomHooks/useFetch";
 import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
+import Swal from "sweetalert2";
+import { handleFetchError } from "../../lib/actions/HandleError";
+import CustomAxios from "../../lib/actions/CustomAxios";
 
 interface IUser {
   _id: string;
@@ -34,13 +37,37 @@ const FriendRequestPage = () => {
   });
 
   const [requestsWithDisplayNames, setRequestsWithDisplayNames] = useState<
-    { _id: string; displayName: string; lastName: string }[]
+    { _id: string; displayName: string; lastName: string; senderid: string }[]
   >([]);
 
   const navigate = useNavigate();
 
   const handleNavigateToFindMyBuddies = () => {
     navigate("/findmybuddies");
+  };
+
+  const handleDeleteFriendRequest = async (senderId: string) => {
+    console.log("Sender ID: ", senderId);
+    try {
+      const reqbody = {
+        requesterId: senderId, // Send the senderId
+      };
+
+      await CustomAxios("post", `/profile/friendrequests/remove`, reqbody);
+
+      const response = await Swal.fire({
+        icon: "success",
+        title: "",
+        text: "Friend request rejected.",
+        showCancelButton: true,
+        cancelButtonText: "Done",
+      });
+      if (response.isConfirmed) {
+        navigate(`/findmybuddies/friendrequests`);
+      }
+    } catch (error) {
+      handleFetchError(error);
+    }
   };
 
   useEffect(() => {
@@ -53,6 +80,7 @@ const FriendRequestPage = () => {
           _id: request._id,
           displayName: user ? user.displayName : "Unknown User",
           lastName: user ? user.lastName : "",
+          senderid: request.senderid, // Include senderid in the state
         };
       });
       setRequestsWithDisplayNames(requestsWithNames);
@@ -105,6 +133,9 @@ const FriendRequestPage = () => {
                       color="red"
                       className="cursor-pointer"
                       size={23}
+                      onClick={() =>
+                        handleDeleteFriendRequest(request.senderid)
+                      }
                     />
                   </div>
                 </li>
