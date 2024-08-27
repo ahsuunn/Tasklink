@@ -1,12 +1,13 @@
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../lib/CustomHooks/useFetch";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import Swal from "sweetalert2";
 import { handleFetchError } from "../../lib/actions/HandleError";
 import CustomAxios from "../../lib/actions/CustomAxios";
+import { CurrentUserContext } from "../../lib/contexts/CurrentUserContext";
 
 interface IUser {
   _id: string;
@@ -20,6 +21,9 @@ interface IFriendRequest {
 }
 
 const FriendRequestPage = () => {
+  const currentUserContext = useContext(CurrentUserContext);
+  const LOCAL_USER_ID = currentUserContext?.currentUser?._id;
+
   const {
     response: friendrequests,
     error: friendRequestsError,
@@ -46,8 +50,49 @@ const FriendRequestPage = () => {
     navigate("/findmybuddies");
   };
 
+  const handleAddFriendRequest = async (senderId: string) => {
+    try {
+      const reqbody = {
+        friendId: senderId,
+      };
+
+      const reqbody2 = {
+        userone: senderId,
+        usertwo: LOCAL_USER_ID,
+        chatcontent: [],
+      };
+
+      const reqbody3 = {
+        requesterId: senderId,
+      };
+
+      const reqbody4 = {
+        ownId: LOCAL_USER_ID,
+        friendId: senderId,
+      };
+
+      await CustomAxios("post", `/profile/friends/add`, reqbody);
+      await CustomAxios("post", `/profile/friends/addback`, reqbody4);
+      await CustomAxios("post", `/chat/`, reqbody2);
+
+      await CustomAxios("post", `/profile/friendrequests/remove`, reqbody3);
+
+      const response = await Swal.fire({
+        icon: "success",
+        title: "",
+        text: "Friend request accepted.",
+        showCancelButton: true,
+        cancelButtonText: "Done",
+      });
+      if (response.isConfirmed) {
+        navigate(`/findmybuddies`);
+      }
+    } catch (error) {
+      handleFetchError(error);
+    }
+  };
+
   const handleDeleteFriendRequest = async (senderId: string) => {
-    console.log("Sender ID: ", senderId);
     try {
       const reqbody = {
         requesterId: senderId,
@@ -128,6 +173,7 @@ const FriendRequestPage = () => {
                       color="green"
                       className="cursor-pointer"
                       size={23}
+                      onClick={() => handleAddFriendRequest(request.senderid)}
                     />
                     <RxCross2
                       color="red"

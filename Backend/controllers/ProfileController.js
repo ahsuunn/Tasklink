@@ -80,6 +80,22 @@ class ProfileController {
     }
   }
 
+  static async addBackFriend(req, res, next) {
+    try {
+      const { friendId, ownId } = req.body;
+
+      if (!friendId) {
+        throw new CustomError(400, "Friend ID is required");
+      }
+
+      const result = await User.addFriend(friendId, ownId);
+
+      res.status(200).json({ message: "Friend successfully added" });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async removeFriend(req, res, next) {
     try {
       const { friendId } = req.body;
