@@ -86,7 +86,7 @@ class User {
 
   static async updateById(_id, updateDoc) {
     const collection = await User.collection();
-    const result = await collection.updateOne({ _id: new ObjectId(_id) }, { $set: updateDoc });
+    const result = await collection.updateOne({ _id: new ObjectId(_id) }, updateDoc);
     return result;
   }
 
