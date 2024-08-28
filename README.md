@@ -27,7 +27,7 @@ Tasklink adalah sebuah aplikasi task management yang berguna untuk mengatur jadw
 - Frontend <br>
 1. src : Direktori ini berisi semua kode sumber untuk aplikasi.
 2. Public : Folder yang berisi file-file statis yang dapat langsung diakses oleh browser, seperti image PNG dan SVG
-3. README.md : Dokumentasi proyek ini, yang menjelaskan cara mengatur, menjalankan, dan berkontribusi pada proyek ini.
+3. 3. README.md : Dokumentasi proyek ini, yang menjelaskan cara mengatur, menjalankan, dan berkontribusi pada proyek ini.
    
 - Backend <br>
 1. routes : Folder yang berisi file rute aplikasi
