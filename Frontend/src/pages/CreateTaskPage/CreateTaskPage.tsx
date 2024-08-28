@@ -20,7 +20,7 @@ const CreateTaskPage = () => {
     primarytitle: "",
     secondarytitle: "",
     numberofsteps: 0,
-    deadlinedate: new Date("2024-01-01T00:00:00Z"),
+    deadlinedate: new Date(),
     deadlinetime: "00:00",
     color: "#ffffff",
     steps: [],
@@ -152,13 +152,13 @@ const CreateTaskPage = () => {
               htmlFor="primarytitle"
               className="self-start pl-2 text-sm uppercase tracking-wide text-slate-500"
             >
-              Primary Title
+              Title
             </label>
             <TextAreaInput
               name="primarytitle"
               value={formData.primarytitle}
               onChange={onChange}
-              placeholder="Input your primary title here"
+              placeholder="Input your title here"
               className="w-full"
               clearErrorMsg={() => setErrors({ ...errors, text: "" })}
               rows={2}
@@ -168,13 +168,13 @@ const CreateTaskPage = () => {
               htmlFor="secondarytitle"
               className="self-start pl-2 text-sm uppercase tracking-wide text-slate-500"
             >
-              Secondary Title
+              Description
             </label>
             <TextAreaInput
               name="secondarytitle"
               value={formData.secondarytitle}
               onChange={onChange}
-              placeholder="Input your secondary title here"
+              placeholder="Input your short project description here"
               className="w-full"
               clearErrorMsg={() => setErrors({ ...errors, text: "" })}
               rows={2}
