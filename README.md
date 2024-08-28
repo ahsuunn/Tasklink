@@ -1,6 +1,6 @@
 # TaskLink
 
-Tasklink adalah sebuah aplikasi task management yang berguna untuk mengatur jadwal dan tugas yang dimiliki sesuai kebutuhan akademiknya, seperti menjadwalkan tenggat tugas, notifikasi tenggat waktu, dan priorit1919isasi tugas. Selain itu, task management menerapkan sistem progress bar sehingga pelajar akan merasa tertantang untuk menyelesaikan tugasnya secara penuh.
+Tasklink adalah sebuah aplikasi task management yang berguna untuk mengatur jadwal dan tugas yang dimiliki sesuai kebutuhan akademiknya, seperti menjadwalkan tenggat tugas, notifikasi tenggat waktu, dan prioritisasi tugas. Selain itu, task management menerapkan sistem progress bar sehingga pelajar akan merasa tertantang untuk menyelesaikan tugasnya secara penuh.
 <br>
 
 ## Fitur
@@ -36,7 +36,7 @@ Tasklink adalah sebuah aplikasi task management yang berguna untuk mengatur jadw
 ## Kelompok 3
 
 1. Jason Samuel | 19623118 | Product Manager
-2. Raka Adhitya Nugraha | 19623230 | Prodcut Manager
+2. Raka Adhitya Nugraha | 19623230 | Product Manager
 3. Michael Ballard Isaiah Silaen | 19623019 | Software Developer
 4. Ahsan Malik Al Farisi | 19623054 | Software Developer
 5. Muhammad Aufa Farabi | 19623144 | Software Developer
