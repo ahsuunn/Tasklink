@@ -3,9 +3,10 @@ const Authentication = require("../middlewares/Authentication");
 
 const ProfileRouter = require("express").Router();
 
+ProfileRouter.get("/friendrequests/mine", Authentication, ProfileController.getMyRequests);
 ProfileRouter.get("/alluser", ProfileController.getAll);
+ProfileRouter.get("/:_id", Authentication, ProfileController.getById);
 ProfileRouter.get("/:email", ProfileController.getByEmail);
-ProfileRouter.put("/:_id", Authentication, ProfileController.updateById);
 
 ProfileRouter.post("/friends/add", Authentication, ProfileController.addFriend);
 ProfileRouter.post("/friends/addback", Authentication, ProfileController.addBackFriend);

@@ -90,11 +90,22 @@ class User {
     return result;
   }
 
-  static async addFriend(userId, friendId, chatId) {
+  static async addFriend(userId, friendId, chatId, displayName, lastName, major) {
     const collection = await User.collection();
     const result = await collection.updateOne(
       { _id: new ObjectId(userId) },
-      { $addToSet: { friends: { _id: new ObjectId(), friendid: friendId, chatId: chatId } } }
+      {
+        $addToSet: {
+          friends: {
+            _id: new ObjectId(),
+            friendid: friendId,
+            chatId: chatId,
+            displayName: displayName,
+            lastName: lastName,
+            major: major,
+          },
+        },
+      }
     );
     return result;
   }

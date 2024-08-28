@@ -60,6 +60,17 @@ const FriendRequestPage = () => {
 
       await CustomAxios("post", `/chat/`, reqbody2);
 
+      console.log("Bruh", senderId);
+      const friendinfo = await CustomAxios("get", `/profile/${senderId}`);
+      console.log("dick: ", friendinfo.data.displayName);
+      console.log("dick2:", friendinfo.data.lastName);
+      console.log("dick3: ", friendinfo.data.major);
+      const owninfo = await CustomAxios("get", `/profile/${LOCAL_USER_ID}`);
+      console.log("dic: ", owninfo.data.displayName);
+      console.log("dic2:", owninfo.data.lastName);
+      console.log("dic3: ", owninfo.data.major);
+      console.log("hard");
+
       const reqbody5 = {
         userId: senderId,
       };
@@ -70,12 +81,18 @@ const FriendRequestPage = () => {
       const reqbody = {
         friendId: senderId,
         chatId: chatId,
+        displayName: friendinfo.data.displayName,
+        lastName: friendinfo.data.lastName,
+        major: friendinfo.data.major,
       };
 
       const reqbody4 = {
         ownId: LOCAL_USER_ID,
         friendId: senderId,
         chatId: chatId,
+        displayName: owninfo.data.displayName,
+        lastName: owninfo.data.lastName,
+        major: owninfo.data.major,
       };
 
       await CustomAxios("post", `/profile/friends/add`, reqbody);

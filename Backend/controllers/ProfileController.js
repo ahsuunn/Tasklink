@@ -15,6 +15,24 @@ class ProfileController {
     }
   }
 
+  static async getById(req, res, next) {
+    try {
+      const { _id } = req.params;
+
+      const userId = new ObjectId(_id);
+      const user = await User.findOne({ _id: userId });
+
+      console.log("skibidi");
+      console.log(user);
+      console.log("toilet");
+      console.log("sender: ", _id);
+
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async getAll(req, res, next) {
     try {
       const user = await User.findAll();
@@ -58,14 +76,14 @@ class ProfileController {
 
   static async addFriend(req, res, next) {
     try {
-      const { friendId, chatId } = req.body;
+      const { friendId, chatId, displayName, lastName, major } = req.body;
       const { _id: userId } = res.locals.user;
 
       if (!friendId) {
         throw new CustomError(400, "Friend ID is required");
       }
 
-      const result = await User.addFriend(userId, friendId, chatId);
+      const result = await User.addFriend(userId, friendId, chatId, displayName, lastName, major);
 
       if (result.modifiedCount === 0) {
         throw new CustomError(404, "User or Friend not found or already added");
@@ -79,13 +97,13 @@ class ProfileController {
 
   static async addBackFriend(req, res, next) {
     try {
-      const { friendId, ownId, chatId } = req.body;
+      const { friendId, ownId, chatId, displayName, lastName, major } = req.body;
 
       if (!friendId) {
         throw new CustomError(400, "Friend ID is required");
       }
 
-      const result = await User.addFriend(friendId, ownId, chatId);
+      const result = await User.addFriend(friendId, ownId, chatId, displayName, lastName, major);
 
       res.status(200).json({ message: "Friend successfully added" });
     } catch (error) {
