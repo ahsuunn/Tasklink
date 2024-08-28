@@ -24,6 +24,17 @@ Tasklink adalah sebuah aplikasi task management yang berguna untuk mengatur jadw
   Framework: Express.js <br>
 
 ### Struktur Program
+- Frontend <br>
+1. src : Direktori ini berisi semua kode sumber untuk aplikasi.
+2. README.md: Dokumentasi proyek ini, yang menjelaskan cara mengatur, menjalankan, dan berkontribusi pada proyek ini.
+3. gitignore: File ini berisi daftar file dan direktori yang tidak ingin Anda lacak dalam Git, seperti file sementara, kredensial, atau direktori depedensi.
+
+- Backend <br>
+1. auth_controller: Mengelola logika otentikasi pengguna, termasuk login dan registrasi.
+2. profil_controller: Mengelola terkait dengan pengelolaan profil pengguna.
+3. user_controller: Mengelola logika yang berkaitan dengan operasi pengguna.
+4. README.md: Dokumentasi proyek ini, yang menjelaskan cara mengatur, menjalankan, dan berkontribusi pada proyek ini.
+5. gitignore: File ini berisi daftar file dan direktori yang tidak ingin Anda lacak dalam Git, seperti file sementara, kredensial, atau direktori depedensi.
 
 <br>
 
