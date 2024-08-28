@@ -46,6 +46,10 @@ class Chat {
 
   static async addMessage(_id, message) {
     const collection = await Chat.collection();
+
+    console.log("......");
+    console.log(message);
+    console.log("......");
     const result = await collection.updateOne({ _id: new ObjectId(_id) }, { $push: { chatcontent: message } });
     return result;
   }

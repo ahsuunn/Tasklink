@@ -88,10 +88,6 @@ class ChatsController {
       const { _id } = req.params;
       const { senderid, content } = req.body;
 
-      if (!ObjectId.isValid(_id) || !ObjectId.isValid(senderid)) {
-        throw new CustomError(400, "Invalid Chat ID or Sender ID format!");
-      }
-
       const newMessage = {
         _id: new ObjectId(),
         senderid: new ObjectId(senderid),
