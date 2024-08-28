@@ -82,10 +82,21 @@ const FindMyBuddiesPage = () => {
     if (!selectedChatId || !messageInput.trim()) return;
 
     try {
+      const currUserId = String(LOCAL_USER_ID);
+      const owninfo = await CustomAxios("get", `/profile/${LOCAL_USER_ID}`);
+
+      const usernamedisplay = owninfo.data.displayName;
+
+      const modifiedMessageContent = `${usernamedisplay}: ${messageInput}`;
+
       const reqbody = {
-        senderId: LOCAL_USER_ID,
-        content: messageInput,
+        senderId: currUserId, // This can be omitted if you are not storing senderId
+        content: modifiedMessageContent,
       };
+
+      console.log("LOCAL_USER_ID:", LOCAL_USER_ID);
+      console.log("Current User ID:", currUserId);
+      console.log("Request Body:", reqbody);
 
       await CustomAxios("post", `/chat/${selectedChatId}/messages`, reqbody);
 
@@ -167,10 +178,7 @@ const FindMyBuddiesPage = () => {
             {selectedChatId ? (
               chatMessages.length > 0 ? (
                 chatMessages.map((message) => (
-                  <div key={message._id}>
-                    <strong>{message.senderid}: </strong>
-                    {message.content}
-                  </div>
+                  <div key={message._id}>{message.content}</div>
                 ))
               ) : (
                 <div>No messages found</div> // Handle the case when there are no chat messages

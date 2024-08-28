@@ -86,11 +86,11 @@ class ChatsController {
   static async addMessageToChat(req, res, next) {
     try {
       const { _id } = req.params;
-      const { senderid, content } = req.body;
+      const { senderId, content } = req.body;
 
       const newMessage = {
-        _id: new ObjectId(),
-        senderid: new ObjectId(senderid),
+        _id: new ObjectId(), // Generate a new ObjectId for the message itself
+        senderId: new ObjectId(senderId), // Convert senderId to ObjectId
         content,
       };
 

@@ -17,7 +17,7 @@ const ProfilePageEdit = () => {
   console.log("Email:", currentUserContext?.currentUser?.email);
   const navigate = useNavigate();
   const { response: userProfile } = useFetch<IUser>({
-    url: `/profile/${currentUserContext?.currentUser?.email}`,
+    url: `/profile/getbyemail/${currentUserContext?.currentUser?.email}`,
   });
   const [formData, setFormData] = useState<IUserForm>({
     username: "",
@@ -237,27 +237,6 @@ const ProfilePageEdit = () => {
                     />
                   </div>
                 </NavLink>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex w-full flex-col items-start space-y-2">
-            <p className="text-2xl font-bold tracking-wider">Security</p>
-            <div className="flex w-full flex-row items-center">
-              <label
-                htmlFor="displayName"
-                className="w-2/5 text-xl font-normal"
-              >
-                Password
-              </label>
-              <div className="flex w-3/4 flex-row">
-                <button
-                  className="flex h-11 w-full min-w-max items-center justify-center text-wrap rounded-lg bg-[#4679A8] px-4 py-2 text-sm text-white"
-                  type="button"
-                  onClick={() => setShowChangePasswordModal(true)}
-                >
-                  Change Password
-                </button>
               </div>
             </div>
           </div>
