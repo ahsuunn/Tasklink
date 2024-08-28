@@ -53,8 +53,8 @@ class ChatsController {
       }
 
       const result = await Chat.create({
-        userone: new ObjectId(userone),
-        usertwo: new ObjectId(usertwo),
+        userone: userone,
+        usertwo: usertwo,
         chatcontent,
       });
 
@@ -143,6 +143,26 @@ class ChatsController {
       }
 
       res.status(200).json({ message: "Message successfully deleted." });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async findChatByUser(req, res, next) {
+    try {
+      const { userId } = req.body;
+      if (!ObjectId.isValid(userId)) {
+        throw new CustomError(400, "Invalid User ID format!");
+      }
+
+      console.log(userId);
+
+      const chatId = await Chat.findChatByUser(userId);
+      if (!chatId) {
+        throw new CustomError(404, "Chat not found for the provided user.");
+      }
+
+      res.status(200).json({ chatId });
     } catch (error) {
       next(error);
     }

@@ -7,6 +7,7 @@ ChatsRouter.get("/", Authentication, ChatsController.getAllChats);
 ChatsRouter.get("/mine", Authentication, ChatsController.getUserChats);
 ChatsRouter.get("/:_id", Authentication, ChatsController.getOneChat);
 ChatsRouter.post("/", Authentication, ChatsController.createChat);
+ChatsRouter.post("/find-chat", Authentication, ChatsController.findChatByUser);
 ChatsRouter.delete("/:_id", Authentication, ChatsController.deleteChat);
 ChatsRouter.post("/:_id/messages", Authentication, ChatsController.addMessageToChat);
 ChatsRouter.put("/:_id/messages/:messageId", Authentication, ChatsController.updateMessageInChat);

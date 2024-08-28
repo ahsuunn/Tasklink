@@ -52,28 +52,38 @@ const FriendRequestPage = () => {
 
   const handleAddFriendRequest = async (senderId: string) => {
     try {
-      const reqbody = {
-        friendId: senderId,
-      };
-
       const reqbody2 = {
         userone: senderId,
         usertwo: LOCAL_USER_ID,
         chatcontent: [],
       };
 
-      const reqbody3 = {
-        requesterId: senderId,
+      await CustomAxios("post", `/chat/`, reqbody2);
+
+      const reqbody5 = {
+        userId: senderId,
+      };
+
+      const respons = await CustomAxios("post", `/chat/find-chat`, reqbody5);
+      const chatId = respons.data.chatId;
+
+      const reqbody = {
+        friendId: senderId,
+        chatId: chatId,
       };
 
       const reqbody4 = {
         ownId: LOCAL_USER_ID,
         friendId: senderId,
+        chatId: chatId,
       };
 
       await CustomAxios("post", `/profile/friends/add`, reqbody);
       await CustomAxios("post", `/profile/friends/addback`, reqbody4);
-      await CustomAxios("post", `/chat/`, reqbody2);
+
+      const reqbody3 = {
+        requesterId: senderId,
+      };
 
       await CustomAxios("post", `/profile/friendrequests/remove`, reqbody3);
 

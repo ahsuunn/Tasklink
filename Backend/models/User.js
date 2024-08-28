@@ -90,11 +90,11 @@ class User {
     return result;
   }
 
-  static async addFriend(userId, friendId) {
+  static async addFriend(userId, friendId, chatId) {
     const collection = await User.collection();
     const result = await collection.updateOne(
       { _id: new ObjectId(userId) },
-      { $addToSet: { friends: { _id: new ObjectId(), friendid: friendId } } }
+      { $addToSet: { friends: { _id: new ObjectId(), friendid: friendId, chatId: chatId } } }
     );
     return result;
   }
@@ -124,9 +124,12 @@ class User {
     return result;
   }
 
-  static async removeFriend(userId, friendId) {
+  static async removeFriend(userId, friendId, chatId) {
     const collection = await User.collection();
-    const result = await collection.updateOne({ _id: new ObjectId(userId) }, { $pull: { friends: { friendid: friendId } } });
+    const result = await collection.updateOne(
+      { _id: new ObjectId(userId) },
+      { $pull: { friends: { friendid: friendId, chatId: chatId } } }
+    );
     return result;
   }
 }

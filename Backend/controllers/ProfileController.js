@@ -47,9 +47,6 @@ class ProfileController {
     try {
       const UserId = res.locals.user._id;
       const user = await User.findOne({ _id: new ObjectId(UserId) }, { friendrequests: 1 });
-      console.log(UserId);
-      console.log(user);
-      console.log("........");
       if (!user) {
         throw new CustomError(404, "User not found");
       }
@@ -61,14 +58,14 @@ class ProfileController {
 
   static async addFriend(req, res, next) {
     try {
-      const { friendId } = req.body;
+      const { friendId, chatId } = req.body;
       const { _id: userId } = res.locals.user;
 
       if (!friendId) {
         throw new CustomError(400, "Friend ID is required");
       }
 
-      const result = await User.addFriend(userId, friendId);
+      const result = await User.addFriend(userId, friendId, chatId);
 
       if (result.modifiedCount === 0) {
         throw new CustomError(404, "User or Friend not found or already added");
@@ -82,13 +79,13 @@ class ProfileController {
 
   static async addBackFriend(req, res, next) {
     try {
-      const { friendId, ownId } = req.body;
+      const { friendId, ownId, chatId } = req.body;
 
       if (!friendId) {
         throw new CustomError(400, "Friend ID is required");
       }
 
-      const result = await User.addFriend(friendId, ownId);
+      const result = await User.addFriend(friendId, ownId, chatId);
 
       res.status(200).json({ message: "Friend successfully added" });
     } catch (error) {
@@ -98,14 +95,14 @@ class ProfileController {
 
   static async removeFriend(req, res, next) {
     try {
-      const { friendId } = req.body;
+      const { friendId, chatId } = req.body;
       const { _id: userId } = res.locals.user;
 
       if (!friendId) {
         throw new CustomError(400, "Friend ID is required");
       }
 
-      const result = await User.removeFriend(userId, friendId);
+      const result = await User.removeFriend(userId, friendId, chatId);
 
       if (result.modifiedCount === 0) {
         throw new CustomError(404, "User or Friend not found");

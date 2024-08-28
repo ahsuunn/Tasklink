@@ -67,6 +67,13 @@ class Chat {
     );
     return result;
   }
+
+  static async findChatByUser(userId) {
+    const collection = await Chat.collection();
+    const query = { $or: [{ userone: userId }, { usertwo: userId }] };
+    const chat = await collection.findOne(query);
+    return chat ? chat._id : null;
+  }
 }
 
 module.exports = Chat;
