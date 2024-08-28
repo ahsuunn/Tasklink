@@ -6,7 +6,7 @@ const ProfileRouter = require("express").Router();
 ProfileRouter.get("/friendrequests/mine", Authentication, ProfileController.getMyRequests);
 ProfileRouter.get("/alluser", ProfileController.getAll);
 ProfileRouter.get("/:_id", Authentication, ProfileController.getById);
-ProfileRouter.get("/getbyemail/:email", ProfileController.getByEmail);
+ProfileRouter.put("/:_id", Authentication, ProfileController.updateById);
 
 ProfileRouter.get("/friends/mine", Authentication, ProfileController.getFriends);
 ProfileRouter.post("/friends/add", Authentication, ProfileController.addFriend);

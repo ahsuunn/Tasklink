@@ -17,7 +17,7 @@ const ProfilePageEdit = () => {
   console.log("Email:", currentUserContext?.currentUser?.email);
   const navigate = useNavigate();
   const { response: userProfile } = useFetch<IUser>({
-    url: `/profile/getbyemail/${currentUserContext?.currentUser?.email}`,
+    url: `/profile/${currentUserContext?.currentUser?._id}`,
   });
   const [formData, setFormData] = useState<IUserForm>({
     username: "",
@@ -132,7 +132,7 @@ const ProfilePageEdit = () => {
 
       await CustomAxios("put", `/profile/${userProfile?._id}`, updateData);
 
-      navigate(`/profile/${username}`);
+      navigate(`/`);
     } catch (error) {
       handleFetchError(error);
     }
