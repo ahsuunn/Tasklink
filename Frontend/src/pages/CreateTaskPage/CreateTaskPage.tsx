@@ -71,7 +71,7 @@ const CreateTaskPage = () => {
           ? formData.steps[index].deadlinedate
           : new Date("2024-01-01T00:00:00Z"), // Ensure it's always a Date object
       deadlinetime: formData.steps[index]?.deadlinetime || "00:00",
-      category: formData.steps[index]?.category || "",
+      category: "To-Do",
     }));
 
     setFormData((oldFd) => ({
@@ -304,20 +304,6 @@ const CreateTaskPage = () => {
                   type="time"
                   name="deadlinetime"
                   value={step.deadlinetime}
-                  onChange={(e) => onStepChange(index, e)}
-                  className="w-full rounded border-[1px] border-slate-400 px-3 py-2 text-slate-700"
-                />
-
-                <label
-                  htmlFor={`step-category-${index}`}
-                  className="self-start pl-2 text-sm uppercase tracking-wide text-slate-500"
-                >
-                  Step {index + 1} Category
-                </label>
-                <input
-                  type="text"
-                  name="category"
-                  value={step.category}
                   onChange={(e) => onStepChange(index, e)}
                   className="w-full rounded border-[1px] border-slate-400 px-3 py-2 text-slate-700"
                 />
