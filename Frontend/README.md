@@ -1,30 +1,32 @@
-# React + TypeScript + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Teknologi yang Digunakan
 
-Currently, two official plugins are available:
+- Teknologi: Vite (Build-tool) dan node.js (Runtime Environment)
+- Bahasa: Typescript+JSX (TSX), dan Typescript (TS)
+- Framework: React, Tailwind (CSS Framework)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Struktur Proyek
 
-## Expanding the ESLint configuration
+- Public: Folder yang berisi file-file statis yang dapat langsung diakses oleh browser, seperti image PNG dan SVG
+- src: folder yang berisi file halaman-halaman, komponen, dan logika utama untuk client side aplikasi
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Instalasi dan Cara menjalankan Frontend
 
-- Configure the top-level `parserOptions` property like this:
+1. Pastikan [Node.js](https://nodejs.org/) dan vite terinstal di sistem Anda.
+2. Install dependensi dengan menjalankan:
+    ```bash
+    npm install
+3. clone repository github ke local dengan cara
+   ```bash
+    git clone https://github.com/Michael-Ballard-Isaiah-Silaen/Sparta-Milestone-Project.git
+5. navigasi direktori ke direktori frontend dengan cara
+   ```bash
+    cd Frontend 
+3. Jalankan Frontend dengan:
+    ```bash
+    npm run dev
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Troubleshooting
+Jika Anda mengalami masalah, pastikan dpendencies telah terinstall dengan benar baik node.js, vite, dan dependensi-dependencies lain yang perlu digunakan.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
