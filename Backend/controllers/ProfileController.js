@@ -173,5 +173,21 @@ class ProfileController {
       next(error);
     }
   }
+
+  static async getFriends(req, res, next) {
+    try {
+      const { _id } = res.locals.user;
+
+      const user = await User.findOne({ _id: new ObjectId(_id) }, { projection: { friends: 1 } });
+
+      if (!user) {
+        throw new CustomError(404, "User not found");
+      }
+
+      res.status(200).json(user.friends);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 module.exports = ProfileController;

@@ -8,6 +8,7 @@ ProfileRouter.get("/alluser", ProfileController.getAll);
 ProfileRouter.get("/:_id", Authentication, ProfileController.getById);
 ProfileRouter.get("/:email", ProfileController.getByEmail);
 
+ProfileRouter.get("/friends/mine", Authentication, ProfileController.getFriends);
 ProfileRouter.post("/friends/add", Authentication, ProfileController.addFriend);
 ProfileRouter.post("/friends/addback", Authentication, ProfileController.addBackFriend);
 ProfileRouter.post("/friends/remove", Authentication, ProfileController.removeFriend);

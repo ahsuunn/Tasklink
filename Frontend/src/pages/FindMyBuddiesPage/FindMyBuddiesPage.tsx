@@ -2,8 +2,25 @@ import { MdPeople } from "react-icons/md";
 import { FaBell } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import useFetch from "../../lib/CustomHooks/useFetch";
+
+interface IFriends {
+  friendid: string;
+  chatId: string;
+  displayName: string;
+  lastName: string;
+  major: string;
+}
 
 const FindMyBuddiesPage = () => {
+  const {
+    response: friends,
+    error: friendsError,
+    loading: friendsLoading,
+  } = useFetch<IFriends[]>({
+    url: "/profile/friends/mine",
+  });
+
   const navigate = useNavigate();
   const handleNavigateToFindBuddies = () => {
     navigate("/findmybuddies/find-buddies");
@@ -41,6 +58,18 @@ const FindMyBuddiesPage = () => {
             </div>
             <div className="flex h-full w-full flex-col gap-2 rounded-lg bg-white px-2 shadow-lg">
               <div>Friendlist</div>
+              {/* Display friends' displayName here */}
+              {friendsLoading ? (
+                <div>Loading...</div>
+              ) : friendsError ? (
+                <div>Error loading friends</div>
+              ) : (
+                friends?.map((friend) => (
+                  <div key={friend.friendid} className="py-2">
+                    {friend.displayName} {friend.lastName}
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
