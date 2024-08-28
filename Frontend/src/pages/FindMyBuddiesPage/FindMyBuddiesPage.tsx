@@ -3,7 +3,7 @@ import { FaBell } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../lib/CustomHooks/useFetch";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CustomAxios from "../../lib/actions/CustomAxios";
 import { CurrentUserContext } from "../../lib/contexts/CurrentUserContext";
 
@@ -49,14 +49,7 @@ const FindMyBuddiesPage = () => {
     navigate("/findmybuddies/friendrequests");
   };
 
-  const handleFriendClick = async (
-    displayName: string,
-    lastName: string,
-    chatId: string,
-  ) => {
-    setSelectedFriendName(`${displayName} ${lastName}`);
-    setSelectedChatId(chatId);
-
+  const fetchChatMessages = async (chatId: string) => {
     try {
       const response = await CustomAxios("get", `/chat/${chatId}`);
       setChatMessages(
@@ -67,6 +60,16 @@ const FindMyBuddiesPage = () => {
     } catch (error) {
       console.error("Error fetching chat messages:", error);
     }
+  };
+
+  const handleFriendClick = (
+    displayName: string,
+    lastName: string,
+    chatId: string,
+  ) => {
+    setSelectedFriendName(`${displayName} ${lastName}`);
+    setSelectedChatId(chatId);
+    fetchChatMessages(chatId); // Fetch messages immediately when a friend is clicked
   };
 
   const handleMessageInputChange = (
@@ -87,16 +90,21 @@ const FindMyBuddiesPage = () => {
       await CustomAxios("post", `/chat/${selectedChatId}/messages`, reqbody);
 
       setMessageInput("");
-      const response = await CustomAxios("get", `/chat/${selectedChatId}`);
-      setChatMessages(
-        Array.isArray(response.data.chatcontent)
-          ? response.data.chatcontent
-          : [],
-      );
+      fetchChatMessages(selectedChatId); // Fetch updated messages after sending a new one
     } catch (error) {
       console.error("Error sending message:", error);
     }
   };
+
+  useEffect(() => {
+    if (selectedChatId) {
+      const intervalId = setInterval(() => {
+        fetchChatMessages(selectedChatId);
+      }, 1000); // Refresh every second
+
+      return () => clearInterval(intervalId); // Cleanup the interval on component unmount or when selectedChatId changes
+    }
+  }, [selectedChatId]);
 
   return (
     <div className="mb-10 mt-10 flex h-fit min-h-fit w-full flex-col px-10 py-4">
