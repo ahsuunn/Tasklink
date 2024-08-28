@@ -28,5 +28,5 @@
     npm run dev
 
 ## Troubleshooting
-Jika Anda mengalami masalah, pastikan dpendencies telah terinstall dengan benar baik node.js, vite, dan dependensi-dependencies lain yang perlu digunakan.
+Jika Anda mengalami masalah, pastikan dependencies telah terinstall dengan benar baik node.js, vite, dan dependencies lain yang perlu digunakan.
 
