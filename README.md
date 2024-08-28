@@ -26,8 +26,9 @@ Tasklink adalah sebuah aplikasi task management yang berguna untuk mengatur jadw
 ### Struktur Program
 - Frontend <br>
 1. src : Direktori ini berisi semua kode sumber untuk aplikasi.
-2. README.md: Dokumentasi proyek ini, yang menjelaskan cara mengatur, menjalankan, dan berkontribusi pada proyek ini.
-3. gitignore: File ini berisi daftar file dan direktori yang tidak ingin Anda lacak dalam Git, seperti file sementara, kredensial, atau direktori depedensi.
+2. Public: Folder yang berisi file-file statis yang dapat langsung diakses oleh browser, seperti image PNG dan SVG
+3. README.md: Dokumentasi proyek ini, yang menjelaskan cara mengatur, menjalankan, dan berkontribusi pada proyek ini.
+4. gitignore: File ini berisi daftar file dan direktori yang tidak ingin Anda lacak dalam Git, seperti file sementara, kredensial, atau direktori depedensi.
 
 - Backend <br>
 1. routes/: Folder yang berisi file rute aplikasi
