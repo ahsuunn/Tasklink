@@ -226,7 +226,7 @@ const ProfilePageEdit = () => {
               </label>
               <div className="flex w-3/4 flex-col items-start">
                 {/* Display Profile Picture */}
-                <NavLink to="/another-page">
+                <NavLink to="">
                   {" "}
                   {/* Replace "/another-page" with the path you want to redirect to */}
                   <div className="relative w-24">
