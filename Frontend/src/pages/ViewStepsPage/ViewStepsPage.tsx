@@ -121,7 +121,7 @@ const ViewStepsPage = () => {
                   <div>{step.steptitle}</div>
                   <div>{step.stepdescription}</div>
                   <div className="flex flex-row gap-1">
-                    <div>{formatDate(step.deadlinedate)}</div>
+                    <div>{formatDate(String(step.deadlinedate))}</div>
                     <div>{formatTime(step.deadlinetime)}</div>
                   </div>
                 </div>
@@ -161,7 +161,7 @@ const ViewStepsPage = () => {
                   <div>{step.steptitle}</div>
                   <div>{step.stepdescription}</div>
                   <div className="flex flex-row gap-1">
-                    <div>{formatDate(step.deadlinedate)}</div>
+                    <div>{formatDate(String(step.deadlinedate))}</div>
                     <div>{formatTime(step.deadlinetime)}</div>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ const ViewStepsPage = () => {
                   <div>{step.steptitle}</div>
                   <div className="text-xs">{step.stepdescription}</div>
                   <div className="flex flex-row gap-1">
-                    <div>{formatDate(step.deadlinedate)}</div>
+                    <div>{formatDate(String(step.deadlinedate))}</div>
                     <div>{formatTime(step.deadlinetime)}</div>
                   </div>
                 </div>

@@ -107,7 +107,7 @@ const HeroSection = () => {
                 const totalSteps = task.steps.length;
                 const progressPercentage =
                   totalSteps > 0 ? (completedSteps / totalSteps) * 100 : 0;
-                const daysLeft = calculateDaysLeft(task.deadlinedate);
+                const daysLeft = calculateDaysLeft(String(task.deadlinedate));
 
                 return (
                   <article
@@ -120,7 +120,7 @@ const HeroSection = () => {
                       style={{ backgroundColor: task.color }}
                     >
                       <div className="text-sm">
-                        {formatDate(task.deadlinedate)}
+                        {formatDate(String(task.deadlinedate))}
                       </div>
                       <div className="relative cursor-pointer">
                         <BsThreeDots
@@ -198,7 +198,7 @@ const HeroSection = () => {
                 <div>{task.primarytitle}</div>
                 <div>{task.secondarytitle}</div>
               </div>
-              <div>{formatDate(task.deadlinedate)}</div>
+              <div>{formatDate(String(task.deadlinedate))}</div>
             </article>
           ))}
         </div>

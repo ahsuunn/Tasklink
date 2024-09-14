@@ -8,7 +8,6 @@ import { CurrentUserProvider } from "../lib/contexts/CurrentUserContext";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import ProfilePageEdit from "../pages/ProfilePage/ProfileEdit";
 import CreateTaskPage from "../pages/CreateTaskPage/CreateTaskPage";
-import TaskPage from "../pages/TaskPage/TaskPage";
 import DeleteTaskPage from "../pages/DeleteTaskPage/DeleteTaskPage";
 import ViewStepsPage from "../pages/ViewStepsPage/ViewStepsPage";
 import CalendarPage from "../pages/CalendarPage/CalendarPage";
@@ -72,8 +71,6 @@ const router = createBrowserRouter([
             element: <CreateTaskPage />,
           },
           {
-            path: "profile/tasks",
-            element: <TaskPage />,
           },
           {
             path: "delete-project/:taskId",

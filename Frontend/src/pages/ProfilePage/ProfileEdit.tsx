@@ -231,7 +231,7 @@ const ProfilePageEdit = () => {
                   {/* Replace "/another-page" with the path you want to redirect to */}
                   <div className="relative w-24">
                     <img
-                      src={"/public/silhouette-male-icon.svg"}
+                      src={"https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&s=200"}
                       alt="Profile"
                       className="h-24 w-24 scale-100 transform cursor-pointer rounded-full bg-white object-cover shadow-md"
                     />
@@ -254,7 +254,7 @@ const ProfilePageEdit = () => {
           <div className="flex flex-row">
             <button
               type="button"
-              className="h-10 w-full items-end justify-items-end rounded-lg bg-[#0C173D] text-white hover:text-red-400"
+              className="h-10 w-full items-end justify-items-end rounded-lg bg-[#0C173D] text-white hover:bg-[#0c173db8]"
               onClick={() => setShowLogoutModal(true)}
             >
               Logout

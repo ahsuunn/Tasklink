@@ -14,8 +14,9 @@ interface ICalendarEvent {
 
 const CalendarPage: React.FC = () => {
   const [events, setEvents] = useState<ICalendarEvent[]>([]);
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, _setCurrentDate] = useState(new Date());
 
+  
   const {
     response: tasks,
     error,
@@ -74,7 +75,6 @@ const CalendarPage: React.FC = () => {
         {loading && <p>Loading...</p>}
         {error && <p>Error loading tasks.</p>}
         <Calendar
-          onChange={setCurrentDate}
           value={currentDate}
           tileContent={tileContent}
           className="custom-calendar"

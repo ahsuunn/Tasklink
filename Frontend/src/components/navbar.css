@@ -52,7 +52,6 @@ body {
 .navbar-list {
   width: 100%;
   text-align: center;
-  padding-right: 2rem;
 }
 
 .navbar-list li {
@@ -84,8 +83,7 @@ body {
 .profile-btn {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding-right: 1rem;
+  justify-content: space-evenly;
   font-size: 0.9rem;
   font-weight: 500;
   width: 150px;
@@ -112,10 +110,12 @@ body {
 
 .profile-img {
   position: relative;
-  width: 3rem;
-  height: 3rem;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
-  background: url(./profile/profile_user.jpg);
+  background: url(https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&s=200);
   background-size: cover;
   display: flex;
 }

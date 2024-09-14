@@ -9,21 +9,20 @@ const Navbar = () => {
   console.log("email: ", currentUserContext?.currentUser?.email);
   return (
     <nav className="navbar">
-      <div className="logo">
-        <NavLink to="/" activeClassName="active">
-          <img src={logopic} alt="Logo" width="60%" />
+      <div className="logo min-w-20">
+        <NavLink to="/">
+          <img src={logopic} alt="Logo" width="180px" />
         </NavLink>
       </div>
-      <ul className="navbar-list">
+      <ul className="navbar-list flex flex-row justify-center">
         <li>
-          <NavLink to="/" activeClassName="active" className="hover:text-black">
+          <NavLink to="/" className="hover:text-black">
             Home
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/calendar"
-            activeClassName="active"
             className="hover:text-black"
           >
             Calendar
@@ -32,7 +31,6 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/findmybuddies"
-            activeClassName="active"
             className="hover:text-black"
           >
             Find My Buddies
@@ -41,7 +39,6 @@ const Navbar = () => {
         <li>
           <NavLink
             to={`/profile/edit/${currentUserContext?.currentUser?.email}`}
-            activeClassName="active"
             className="hover:text-black"
           >
             Settings
@@ -53,7 +50,7 @@ const Navbar = () => {
       <div className="profile">
         <ul>
           <li>
-            <NavLink to="/profile">
+            <NavLink to="">
               <div className="profile-btn reverse">
                 <div className="profile-img"></div>
                 <div className="username">
