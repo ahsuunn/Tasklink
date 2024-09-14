@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CurrentUserContext } from "../lib/contexts/CurrentUserContext";
 import { NavLink } from "react-router-dom";
 import logopic from "../pages/images/logo.png";
-import "./Navbar.css";
+import "./navbar.css";
 
 const Navbar = () => {
   const currentUserContext = useContext(CurrentUserContext);
