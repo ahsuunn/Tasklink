@@ -124,3 +124,104 @@ body {
   position: relative;
   display: flex;
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    height: 70px;
+    background-color: var(--white);
+    padding: 0 2%;
+    box-shadow: var(--shadow);
+  }
+  
+  .logo {
+    font-size: 2em;
+    display: flex;
+    cursor: pointer;
+  }
+  
+  .logo a {
+    text-decoration: none;
+    color: #00061b;
+    font-weight: 500;
+    width: fit-content;
+  }
+  
+  .navbar-list {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .navbar-list li {
+    display: inline-block;
+    margin: 0.6rem;
+  }
+  
+  .navbar a:hover,
+  .navbar a.active {
+    color: black;
+  }
+  
+  .navbar-list li a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #717171;
+    text-decoration: none;
+  }
+  
+  .profile {
+    position: relative;
+    width: fit-content;
+  }
+  
+  .profile li a {
+    text-decoration: none;
+  }
+  
+  .profile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 0.8rem;
+    font-weight: 500;
+    width: 100px;
+    border-radius: 50px;
+    color: var(--black);
+    gap: 0.3rem;
+  
+    cursor: pointer;
+    border: 2px solid var(--black);
+    transition:
+      box-shadow 0.2s ease-in,
+      background-color 0.2s ease-in,
+      border 0.3s;
+  }
+  
+  .profile-btn.reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .profile-btn:hover {
+    background-color: var(--blue);
+    box-shadow: var(--shadow);
+  }
+  
+  .profile-img {
+    position: relative;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: url(https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&s=200);
+    background-size: cover;
+    display: flex;
+  }
+  
+  .username {
+    position: relative;
+    display: flex;
+  }
+}

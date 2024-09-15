@@ -11,10 +11,10 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="logo min-w-20">
         <NavLink to="/">
-          <img src={logopic} alt="Logo" width="180px" />
+          <img src={logopic} alt="Logo" width="160px" />
         </NavLink>
       </div>
-      <ul className="navbar-list flex flex-row justify-center">
+      <ul className="navbar-list flex justify-center">
         <li>
           <NavLink to="/" className="hover:text-black">
             Home
